@@ -1,10 +1,213 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Резюме Шрека-программиста – гения кода, создавшего крутые игры и приложения. Работал с ведущими мировыми проектами, программирует на Кумире." />
+    <meta name="keywords" content="Шрек, программист, резюме, Kumir, игры, приложения, портфолио" />
+    <meta name="author" content="Ваше Имя" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Шрек-программист: Резюме</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Montserrat', sans-serif; line-height: 1.6; color: #333; background: #f0f2f5; padding: 1rem; }
+        a { text-decoration: none; color: inherit; }
+
+        header {
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+            color: #fff;
+            padding: 2rem 1rem;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+        header h1 { font-size: 3rem; margin-bottom: 1rem; }
+
+        .profile-pic {
+            display: block;
+            margin: 1rem auto;
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #fff;
+        }
+
+        main { max-width: 1200px; margin: 0 auto; }
+
+        .resume {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+        .resume h2 { font-size: 2rem; margin-bottom: 1rem; text-align: center; }
+        .resume p { margin-bottom: 1rem; text-align: justify; }
+
+        .portfolio {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+        .portfolio h2 { font-size: 2rem; margin-bottom: 1rem; text-align: center; }
+        .projects { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
+        .project {
+            flex: 1 1 280px;
+            text-align: center;
+            background: #fafafa;
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+        .project img { width: 100%; border-radius: 4px; }
+        .project p { margin-top: 0.5rem; font-size: 0.95rem; }
+
+        .tech-stack {
+            background: #fff;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        .tech-stack h2 { font-size: 2rem; margin-bottom: 1rem; }
+        .tech-stack ul { list-style: none; display: inline-flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
+        .tech-stack li {
+            background: #27ae60;
+            color: #fff;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .contact-form {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            max-width: 500px;
+            margin: 0 auto 2rem;
+        }
+        .contact-form h2 { font-size: 1.8rem; margin-bottom: 1rem; text-align: center; }
+        .contact-form form { display: flex; flex-direction: column; gap: 1rem; }
+        .contact-form label { font-weight: 600; }
+        .contact-form input,
+        .contact-form textarea {
+            padding: 0.75rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        .contact-form input:focus,
+        .contact-form textarea:focus { outline: none; border-color: #27ae60; }
+        .contact-form button {
+            background: #27ae60;
+            color: #fff;
+            border: none;
+            padding: 0.75rem;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        .contact-form button:hover { background: #219150; }
+
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background: #fff;
+            border-top: 1px solid #ddd;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 600px) {
+            header h1 { font-size: 2.5rem; }
+            .resume h2, .portfolio h2, .tech-stack h2, .contact-form h2 { font-size: 1.5rem; }
+        }
+    </style>
 </head>
 <body>
+<header>
+    <h1>Шрек</h1>
+    <p>Гениальный программист и король болота, покоривший мир IT своим кодом!</p>
+    <img src="img/shrek_psw.jpeg" alt="Фото Шрека" class="profile-pic">
+</header>
 
+<main>
+    <section class="resume">
+        <h2>Обо мне</h2>
+        <p>
+            Привет, я Шрек-программист – гениальный огр, владеющий множеством языков программирования и опытом работы в лучших мировых IT-компаниях. Мой путь начался в волшебном болоте, где я изучил все тонкости кодинга и создал революционные проекты.
+        </p>
+        <p>
+            За плечами – создание таких легендарных проектов, как YouTube, Google и GTA 5. Теперь я пишу код на языке Кумир, совершенствуя искусство программирования с огровской искренностью и юмором.
+        </p>
+    </section>
+
+    <section class="portfolio">
+        <h2>Проекты</h2>
+        <div class="projects">
+            <div class="project">
+                <img src="img/shrek.jpeg" alt="Болото Runner">
+                <p>Болото Runner – аркадная игра, где каждый прыжок через лужу – победа!</p>
+            </div>
+            <div class="project">
+                <img src="img/shrek_tycoon.jpeg" alt="Огр Tycoon">
+                <p>Огр Tycoon – симулятор управления болотом с огровским подходом к бизнесу.</p>
+            </div>
+            <div class="project">
+                <img src="img/shrek_code.jpeg" alt="Code of Ogre">
+                <p>Code of Ogre – платформа для обучения программированию на языке Кумир.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="tech-stack">
+        <h2>Мой стек технологий</h2>
+        <ul>
+            <li>Кумир</li>
+            <li>HTML</li>
+            <li>CSS</li>
+        </ul>
+    </section>
+
+    <section class="contact-form">
+        <h2>Свяжитесь со мной</h2>
+        <form id="contactForm" action="#" method="post" novalidate>
+            <label for="name">Имя:</label>
+            <input type="text" id="name" name="name" required placeholder="Введите ваше имя">
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required placeholder="Введите ваш email">
+
+            <label for="message">Сообщение:</label>
+            <textarea id="message" name="message" rows="5" required placeholder="Ваше сообщение"></textarea>
+
+            <button type="submit">Отправить</button>
+        </form>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2025. Все права не защищены.</p>
+</footer>
+
+<script>
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+        var emailInput = document.getElementById('email');
+        var emailValue = emailInput.value.trim();
+        var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(emailValue)) {
+            alert('Пожалуйста, введите корректный email адрес.');
+            emailInput.focus();
+            e.preventDefault();
+        }
+    });
+</script>
 </body>
 </html>
