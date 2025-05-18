@@ -1,0 +1,149 @@
+document.addEventListener('DOMContentLoaded', () => {
+    const modal = document.getElementById('project-modal');
+    const modalImg = document.getElementById('modal-image');
+    const prevBtn = document.getElementById('prev-slide');
+    const nextBtn = document.getElementById('next-slide');
+    const counter = document.getElementById('slide-counter');
+    const closeBtn = document.getElementById('modal-close');
+    const images = Array.from(document.querySelectorAll('.project img'));
+    let currentIndex = 0;
+
+    images.forEach(img => img.addEventListener('click', () => {
+        currentIndex = +img.dataset.index;
+        updateModal();
+        modal.classList.add('show');
+    }));
+
+    closeBtn.addEventListener('click', () => modal.classList.remove('show'));
+    prevBtn.addEventListener('click', () => {
+        if (currentIndex > 0) {
+            currentIndex--;
+            updateModal();
+        }
+    });
+    nextBtn.addEventListener('click', () => {
+        if (currentIndex < images.length - 1) {
+            currentIndex++;
+            updateModal();
+        }
+    });
+
+    function updateModal() {
+        modalImg.src = images[currentIndex].src;
+        modalImg.alt = images[currentIndex].alt;
+        counter.textContent = `${currentIndex + 1}/${images.length}`;
+        prevBtn.style.visibility = currentIndex === 0 ? 'hidden' : 'visible';
+        nextBtn.style.visibility = currentIndex === images.length - 1 ? 'hidden' : 'visible';
+    }
+
+    modal.addEventListener('click', e => {
+        if (e.target === modal) modal.classList.remove('show');
+    });
+
+    const formModal = document.getElementById('contact-modal');
+    const contactTrigger = document.getElementById('contact-trigger');
+    const formClose = document.getElementById('form-close');
+    const form = document.getElementById('contact-form');
+    const btn = document.getElementById('submit-btn');
+    const successMsg = document.getElementById('success-message');
+
+    contactTrigger.addEventListener('click', () => formModal.classList.add('show'));
+    formClose.addEventListener('click', () => formModal.classList.remove('show'));
+
+    formModal.addEventListener('click', e => {
+        if (e.target === formModal) formModal.classList.remove('show');
+    });
+
+    const validators = {
+        name: v => /^[а-яёА-ЯЁa-zA-Z\s]+$/.test(v),
+        email: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v),
+        message: v => /^([а-яёА-ЯЁ\s]+|[a-zA-Z\s]+)$/.test(v)
+    };
+
+    form.addEventListener('submit', e => {
+        e.preventDefault();
+        let valid = true;
+
+        ['name', 'email', 'message'].forEach(field => {
+            const val = document.getElementById(field).value.trim();
+            const err = document.getElementById(field + '-error');
+            if (!validators[field](val)) {
+                err.textContent = 'Некорректно';
+                valid = false;
+            } else {
+                err.textContent = '';
+            }
+        });
+
+        if (!valid) return;
+        btn.textContent = 'Отправляем...';
+        btn.disabled = true;
+
+        setTimeout(() => {
+            btn.textContent = 'Успешно отправлено!';
+            successMsg.style.display = 'block';
+
+            setTimeout(() => {
+                form.reset();
+                btn.textContent = 'Отправить';
+                btn.disabled = false;
+                successMsg.style.display = 'none';
+                formModal.classList.remove('show');
+            }, 3000);
+        }, 1000);
+    });
+
+    const ad = document.getElementById('ad-popup');
+    if (!localStorage.getItem('adClosed')) setTimeout(() => ad.style.display = 'block', 30000);
+    document.getElementById('ad-close').addEventListener('click', () => {
+        ad.style.display = 'none';
+        localStorage.setItem('adClosed', '1');
+    });
+
+    const endDate = new Date('2028-06-15T00:00:00');
+    const d = document.getElementById('days'),
+        h = document.getElementById('hours'),
+        m = document.getElementById('minutes'),
+        s = document.getElementById('seconds');
+
+    function tick() {
+        const now = new Date(), diff = endDate - now;
+        if (diff <= 0) {
+            document.getElementById('countdown').textContent = 'Вы уже получили диплом!';
+            return;
+        }
+        d.textContent = Math.floor(diff / 86400000);
+        h.textContent = Math.floor((diff % 86400000) / 3600000);
+        m.textContent = Math.floor((diff % 3600000) / 60000);
+        s.textContent = Math.floor((diff % 60000) / 1000);
+    }
+
+    setInterval(tick, 1000);
+    tick();
+
+    const header = document.getElementById('main-header');
+    const bubbles = document.querySelectorAll('.floating-bubbles circle');
+    let lastScroll = 0;
+
+    window.addEventListener('scroll', () => {
+        const y = window.scrollY;
+        header.classList.toggle('fixed-header', y > window.innerHeight);
+
+        if (y !== lastScroll) {
+            bubbles.forEach((b, i) => {
+                const baseX = +b.getAttribute('cx'), baseY = +b.getAttribute('cy');
+                const offsetY = Math.sin((y / 100) + i) * 5;
+                b.style.transform = `translate(0, ${offsetY}px)`;
+            });
+            lastScroll = y;
+        }
+    });
+
+    document.addEventListener('mousemove', e => {
+        bubbles.forEach((b, i) => {
+            const dx = (e.clientX / window.innerWidth - 0.5) * (i + 1) * 10;
+            const dy = (e.clientY / window.innerHeight - 0.5) * (i + 1) * 10;
+            b.style.transform = `translate(${dx}px, ${dy}px)`;
+        });
+    });
+});
