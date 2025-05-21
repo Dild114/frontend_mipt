@@ -109,18 +109,34 @@ const d = document.getElementById('days');
 const h = document.getElementById('hours');
 const m = document.getElementById('minutes');
 const s = document.getElementById('seconds');
+function plural(n, forms) {
+    n = Math.abs(n) % 100;
+    const n1 = n % 10;
+    if (n > 10 && n < 20) return forms[2];
+    if (n1 > 1 && n1 < 5) return forms[1];
+    if (n1 == 1) return forms[0];
+    return forms[2];
+}
+
 function tick() {
     const now = new Date();
     const diff = endDate - now;
     if (diff <= 0) {
         document.getElementById('countdown').textContent = 'Вы уже получили диплом!';
         return;
-    };
-    d.textContent = Math.floor(diff / 86400000);
-    h.textContent = Math.floor((diff % 86400000) / 3600000);
-    m.textContent = Math.floor((diff % 3600000) / 60000);
-    s.textContent = Math.floor((diff % 60000) / 1000);
+    }
+
+    const days = Math.floor(diff / 86400000);
+    const hours = Math.floor((diff % 86400000) / 3600000);
+    const minutes = Math.floor((diff % 3600000) / 60000);
+    const seconds = Math.floor((diff % 60000) / 1000);
+
+    d.textContent = `${days} ${plural(days, ['день', 'дня', 'дней'])}`;
+    h.textContent = `${hours} ${plural(hours, ['час', 'часа', 'часов'])}`;
+    m.textContent = `${minutes} ${plural(minutes, ['минута', 'минуты', 'минут'])}`;
+    s.textContent = `${seconds} ${plural(seconds, ['секунда', 'секунды', 'секунд'])}`;
 }
+
 setInterval(tick, 1000);
 tick();
 const bubbles = document.querySelectorAll('.floating-bubbles circle');
